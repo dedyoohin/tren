@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Программа прогресса у моря | 40 лет, рост 190 см</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #eef2f5;
+            color: #1a2a32;
+            padding: 16px 12px 48px 12px;
+            line-height: 1.45;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* карточки и заголовки */
+        .header {
+            background: linear-gradient(135deg, #0b3b3f, #1b5e6e);
+            color: white;
+            padding: 24px 16px;
+            border-radius: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .header .badge {
+            display: inline-block;
+            background: #ffb74d;
+            color: #1e2a2e;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        .stat-line {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 16px;
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.2);
+            border-radius: 28px;
+            padding: 10px 16px;
+        }
+
+        .day-card {
+            background: white;
+            border-radius: 32px;
+            margin-bottom: 32px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .day-title {
+            background: #1e4957;
+            color: white;
+            padding: 16px 20px;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+        .day-sub {
+            background: #f0f4f8;
+            padding: 8px 20px;
+            font-size: 0.85rem;
+            color: #2c5a6e;
+            font-weight: 500;
+            border-bottom: 1px solid #dce5ec;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 16px 16px 0 16px;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            background: #fff;
+        }
+        table {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+        th {
+            background: #eef2f9;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: 600;
+            color: #1e3a45;
+            border-bottom: 1px solid #d0dbe6;
+        }
+        td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #ecf1f5;
+            vertical-align: top;
+            background-color: white;
+        }
+        .muscle-list {
+            font-size: 0.75rem;
+            line-height: 1.3;
+        }
+        .progress-text {
+            background: #e6f7ec;
+            border-radius: 14px;
+            padding: 12px 16px;
+            margin: 16px;
+            font-size: 0.85rem;
+            border-left: 4px solid #2e7d64;
+        }
+        .step-block {
+            margin: 16px;
+            background: #fafcff;
+            border-radius: 24px;
+            padding: 16px;
+            border: 1px solid #dee6ef;
+        }
+        .step-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: #155f6b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .step-desc {
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            color: #2c3e44;
+        }
+        .bullet-list {
+            padding-left: 20px;
+            margin: 8px 0;
+        }
+        hr {
+            margin: 16px 0;
+            border: none;
+            border-top: 1px solid #cddfe8;
+        }
+        .important-note {
+            background: #fff7e5;
+            border-left: 5px solid #f5a623;
+            padding: 14px 18px;
+            border-radius: 20px;
+            margin: 16px;
+            font-size: 0.85rem;
+        }
+        .footer-note {
+            background: #d9e9f0;
+            border-radius: 24px;
+            padding: 20px;
+            margin-top: 24px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        @media (max-width: 500px) {
+            body {
+                padding: 12px 8px;
+            }
+            .day-title {
+                font-size: 1.4rem;
+                padding: 12px 16px;
+            }
+            .step-block {
+                margin: 12px;
+                padding: 12px;
+            }
+            .table-wrapper {
+                margin: 12px;
+            }
+        }
+        .small-note {
+            font-size: 0.7rem;
+            color: #556c78;
+            margin-top: 6px;
+        }
+        .tag {
+            background: #d4e3ed;
+            border-radius: 20px;
+            padding: 2px 8px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>🏖️ Прогресс у моря</h1>
+        <div>Для роста силы и формы | 40 лет, 190 см, 80 кг</div>
+        <div class="badge">⭐ Цель: ПРОГРЕССИРОВАТЬ, а не просто сохранить</div>
+        <div class="stat-line">
+            <span>🏋️ Стаж в зале: 8 мес</span>
+            <span>🎯 Жим гантелей: 22 кг × 15</span>
+            <span>🦵 Жим ногами: 120 кг × 3</span>
+        </div>
+    </div>
+
+    <!-- ============================ ДЕНЬ 1 ============================ -->
+    <div class="day-card">
+        <div class="day-title">📌 ДЕНЬ 1 · ЖИМОВОЙ</div>
+        <div class="day-sub">Грудь, плечи, трицепс | Прогрессия каждую тренировку</div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                <tr><th>Упражнение</th><th>Мышцы (уровень)</th><th>Заменяет тренажёр</th><th>Подходы × повторы (старт)</th><th>Прогрессия</th><th>Отдых</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Отжимания с ногами на возвышении</strong> (30–40 см)</td><td class="muscle-list">Осн: верх груди, передняя дельта<br>Всп: трицепс, средняя грудь</td><td>Жим на наклонной</td><td>3 × 12</td><td>+1 повтор → до 15 → рюкзак 2–5 кг</td><td>75″</td></tr>
+                    <tr><td><strong>Узкие отжимания «ромбиком»</strong></td><td class="muscle-list">Осн: трицепс, внутренняя грудь</td><td>Жим узким хватом</td><td>3 × 10</td><td>+1 повтор до 15 → рюкзак на спине 2–3 кг</td><td>60″</td></tr>
+                    <tr><td><strong>Отжимания на брусьях</strong></td><td class="muscle-list">Осн: низ груди, трицепс</td><td>Брусья в зале</td><td>3 × 6 (max)</td><td>дойти до 10 чистых → рюкзак спереди 2 кг</td><td>90″</td></tr>
+                    <tr><td><strong>Планка с касанием плеча</strong></td><td class="muscle-list">Кор, передняя зубчатая, дельты</td><td>Динамическая планка</td><td>3 × 10 касаний</td><td>до 16 касаний → пауза в касании 1″</td><td>45″</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="progress-text">
+            🚀 <strong>Принцип прогрессии</strong>: Если сделали все подходы чисто — на следующей тренировке добавляете +1 повторение в каждый подход (или +1 кг в рюкзак). Не получилось — остаётесь на той же нагрузке 1–2 тренировки.
+        </div>
+
+        <div class="step-block">
+            <div class="step-title">1️⃣ Отжимания с ногами на возвышении — техника</div>
+            <div class="step-desc">Лягте лицом вниз. Ладони чуть шире плеч, пальцы вперёд. Носки на скамье/камне (30–40 см). Тело — прямая линия, живот втянут, ягодицы напряжены. На вдохе согните локти под 45° от корпуса, опуститесь до 3–5 см от пола. На выдохе мощно вытолкнитесь вверх, оставляя локти чуть согнутыми. Контролируйте поясницу.</div>
+            <div class="small-note">✅ При росте 190 см не опускайтесь ниже комфортного угла 90° в локтях.</div>
+        </div>
+        <div class="step-block">
+            <div class="step-title">2️⃣ Узкие отжимания «ромбиком»</div>
+            <div class="step-desc">Соедините указательные и большие пальцы в треугольник (ромб). Локти прижаты к корпусу, направлены назад. Опускайтесь грудью прямо на кисти. Внизу — лёгкое касание. Выдох — разгибайте руки до конца, дополнительно сожмите трицепс вверху. Не разводите локти!</div>
+        </div>
+        <div class="step-block">
+            <div class="step-title">3️⃣ Брусья (безопасно для длинных рук)</div>
+            <div class="step-desc">Запрыгните на брусья, руки прямые, корпус наклонён 10–15°. Локти сгибайте назад (не в стороны) до параллели плеча с полом или чуть ниже, но не глубже 90°. На выдохе выжмите вверх. Не раскачивайтесь. Если 6 раз сложно — делайте негативы (запрыгнуть в верхнюю точку, опускаться 5–7 сек).</div>
+        </div>
+        <div class="step-block">
+            <div class="step-title">4️⃣ Планка с касанием плеча</div>
+            <div class="step-desc">Упор на прямых руках, ладони под плечами (чуть шире для устойчивости). Не поднимая таз, оторвите правую руку → коснитесь левого плеча → верните. Повторите левой. Корпус не вращать. Прогрессия: увеличивайте касания и добавляйте паузу в точке касания.</div>
+        </div>
+    </div>
+
+    <!-- ============================ ДЕНЬ 2 ============================ -->
+    <div class="day-card">
+        <div class="day-title">📌 ДЕНЬ 2 · ТЯГОВЫЙ</div>
+        <div class="day-sub">Спина, бицепс, пресс | Укрепляем осанку и широчайшие</div>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Упражнение</th><th>Мышцы (уровень)</th><th>Заменяет тренажёр</th><th>Подходы × повторы (старт)</th><th>Прогрессия</th><th>Отдых</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Подтягивания широким хватом</strong> (сверху)</td><td class="muscle-list">Осн: широчайшие, бицепс<br>Всп: трапеция, круглые</td><td>Тяга верхнего блока</td><td>3 × макс (цель 5–8)</td><td>+1 повтор суммарно → 3×8 → рюкзак 2 кг</td><td>120″</td></tr>
+                    <tr><td><strong>Австралийские подтягивания</strong> (обратным хватом)</td><td class="muscle-list">Низ широчайших, ромбовидные, бицепс</td><td>Тяга штанги к поясу</td><td>3 × 12</td><td>+1 повтор до 15 → ноги выше → рюкзак 2–3 кг</td><td>60″</td></tr>
+                    <tr><td><strong>Негативные подтягивания</strong> (если обычных <5)</td><td class="muscle-list">Эксцентрика широчайших, бицепс</td><td>Негативы в блочном</td><td>3 × 4 (8 сек опуск.)</td><td>опускание до 10 сек → 6 повторений</td><td>60″</td></tr>
+                    <tr><td><strong>Подъём прямых ног в висе до 90°</strong></td><td class="muscle-list">Пресс, сгибатели бедра</td><td>Подъём ног в висе</td><td>3 × 8</td><td>+1 повтор до 12 → ноги до перекладины</td><td>60″</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="step-block">
+            <div class="step-title">🔹 Подтягивания широким хватом</div>
+            <div class="step-desc">Вис, хват прямой шире плеч на 15–20 см. Сведите лопатки вниз и назад. На выдохе тяните грудь к перекладине (не подбородок!), локти идут вниз-назад. Вверху пауза 0.5″. Медленно опускайтесь. При недостатке силы — делайте негативы (след. упражнение).</div>
+        </div>
+        <div class="step-block">
+            <div class="step-title">🔹 Австралийские подтягивания</div>
+            <div class="step-desc">Турник на высоте пояса. Повисните под ним, пятки на земле, тело прямое. Хват обратный (ладони к себе) на ширине плеч. Подтяните грудь к перекладине, сводя лопатки. Опускайтесь плавно. Регулируйте сложность расстоянием ног.</div>
+        </div>
+        <div class="step-block">
+            <div class="step-title">🔹 Негативные подтягивания</div>
+            <div class="step-desc">Залезьте на турник (со стула или прыжком) в верхнюю точку (подбородок над перекладиной). Опускайтесь максимально медленно — 6–10 секунд. Спрыгните, отдых 10–15 сек. Отлично развивает силу для выхода на чистые подтягивания.</div>
+        </div>
+        <div class="step-block">
+            <div class="step-title">🔹 Подъём прямых ног в висе</div>
+            <div class="step-desc">Вис на турнике, ноги вместе. На выдохе поднимите прямые ноги до горизонтали (90°). Задержка 1″. Медленно опустите. Не раскачивайтесь. При длинных ногах можно слегка сгибать колени, но стремитесь к прямым.</div>
+        </div>
+        <div class="important-note">
+            💡 <strong>Прогрессия в тяговом дне:</strong> Записывайте количество подтягиваний. Если сегодня сделали 5,5,4 = 14 повторений — в следующий раз цель 15-16. Добавляйте 0.5–1 повторение за тренировку.
+        </div>
+    </div>
+
+    <!-- ============================ ДЕНЬ 3 ============================ -->
+    <div class="day-card">
+        <div class="day-title">📌 ДЕНЬ 3 · НОГИ + КОР</div>
+        <div class="day-sub">Безопасная нагрузка для коленей, мощные ноги и ягодицы</div>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Упражнение</th><th>Мышцы (уровень)</th><th>Заменяет тренажёр</th><th>Подходы × повторы (старт)</th><th>Прогрессия</th><th>Отдых</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Болгарские сплит-приседания</strong> с рюкзаком</td><td class="muscle-list">Квадрицепс, ягодицы, приводящие</td><td>Присед со штангой</td><td>3 × 10 (на ногу)</td><td>+1 повтор до 15 → вес рюкзака до 10–12 кг</td><td>90″</td></tr>
+                    <tr><td><strong>Выпады назад (реверс)</strong></td><td class="muscle-list">Ягодицы, квадрицепс, бицепс бедра</td><td>Выпады с гантелями</td><td>3 × 12 (на ногу)</td><td>+1–2 повтор до 15 → рюкзак 2–5 кг</td><td>60″</td></tr>
+                    <tr><td><strong>Подъёмы на носки стоя</strong> (ступенька)</td><td class="muscle-list">Икроножная, камбаловидная</td><td>Тренажёр для икр</td><td>4 × 20</td><td>+2 повтора до 30 → рюкзак 5+ кг</td><td>45″</td></tr>
+                    <tr><td><strong>Гиперэкстензия на полу (лодочка)</strong></td><td class="muscle-list">Разгибатели спины, ягодицы, задняя поверхность</td><td>Гиперэкстензия</td><td>3 × 15</td><td>+1 повтор до 20 → пауза вверху 2–3″</td><td>60″</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="step-block">
+            <div class="step-title">🦵 Болгарские сплит-приседания</div>
+            <div class="step-desc">Встаньте спиной к скамье (30–40 см), подъём одной ноги на опору. Передняя нога на полшага вперёд. Рюкзак с грузом на груди. На вдохе согните переднюю ногу, колено не выходит за носок, опускайтесь до 3–5 см над полом. На выдохе толчок пяткой вверх. Не касайтесь коленом пола — бережём суставы.</div>
+        </div>
+        <div class="step-block">
+            <div class="step-title">🦵 Выпады назад (реверс)</div>
+            <div class="step-desc">Из положения стоя шаг назад правой ногой, опуститесь в выпад до 90° в обоих коленях. Переднее колено строго над пяткой. Оттолкнитесь задней ногой и вернитесь. Выполняйте все повторения на одну ногу, затем смена. На песке и газоне особенно эффективно для стабилизаторов.</div>
+        </div>
+        <div class="step-block">
+            <div class="step-title">🦵 Подъёмы на носки на краю ступеньки</div>
+            <div class="step-desc">Носки на возвышении, пятки свисают. Одна рука за опору, в другой рюкзак (или на плечах). Опуститесь максимально низко, затем мощно поднимитесь на носки с задержкой 1–2″ вверху. Выполняйте с прямыми коленями (икры) и с чуть согнутыми (камбаловидные) — чередуйте подходы.</div>
+        </div>
+        <div class="step-block">
+            <div class="step-title">🦵 Гиперэкстензия на полу (лодочка)</div>
+            <div class="step-desc">Лёжа на животе, руки вытянуты вперёд или вдоль тела. Одновременно поднимите прямые руки и ноги вверх, прогибаясь в спине. Задержитесь на 1–2 секунды, сжимая ягодицы. Опуститесь плавно. Для прогрессии используйте задержку до 4 секунд или возьмите небольшие бутылки с водой в руки.</div>
+        </div>
+    </div>
+
+    <!-- ============== ОБЩИЕ РЕКОМЕНДАЦИИ + ПРОГРЕССИЯ ============== -->
+    <div style="background: white; border-radius: 32px; padding: 20px; margin: 16px 0;">
+        <h3 style="font-size: 1.3rem; margin-bottom: 12px;">📈 Как прогрессировать в каждом упражнении</h3>
+        <ul class="bullet-list" style="margin-bottom: 16px;">
+            <li><strong>Линейная прогрессия</strong>: вы сделали 3×12 в отжиманиях — на следующей тренировке 3×13. Достигли верхней границы (15) — добавляете вес (рюкзак 2 кг) и возвращаетесь к 3×10–12.</li>
+            <li><strong>Микро-шаги</strong>: Если не можете добавить повторение, увеличьте время под нагрузкой (медленнее опускание) или сократите отдых на 5–10 секунд.</li>
+            <li><strong>Дневник тренировок</strong>: записывайте подходы, повторения, вес рюкзака, самочувствие. Это ключ к стабильному росту после 40 лет.</li>
+            <li><strong>Добавочный вес</strong>: используйте рюкзак с бутылками воды (1 л = 1 кг). Постепенно доведите до 10–12 кг в базовых движениях.</li>
+        </ul>
+        <div class="important-note" style="background: #e6f0fa;">
+            ⏱️ <strong>Режим тренировок (3–4 раза в неделю):</strong> День 1 → отдых → День 2 → отдых → День 3 → отдых. Можно чередовать: понедельник/среда/пятница. День 4 (круговая) по желанию, но для прогресса достаточно трёх дней.
+        </div>
+    </div>
+
+    <!-- ПОКРЫТИЯ И СОВЕТЫ ДЛЯ МОРЯ -->
+    <div style="background: #ffffffdd; border-radius: 32px; padding: 20px; margin: 16px 0;">
+        <h3 style="font-size: 1.3rem;">🏝️ Советы для тренировок у моря</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px;">
+            <div style="background: #fef5e8; padding: 12px; border-radius: 20px; flex: 1; min-width: 130px;"><span style="font-weight: bold;">🏖️ Песок</span><br>Увеличивает нагрузку на стабилизаторы. Используйте для выпадов, планки, отжиманий. Под ладони подкладывайте полотенце или доску, чтобы не проваливаться запястьями.</div>
+            <div style="background: #e8f3f0; padding: 12px; border-radius: 20px; flex: 1; min-width: 130px;"><span style="font-weight: bold;">🌿 Газон</span><br>Идеален для отжиманий, берпи (без прыжков) и австралийских подтягиваний. Мягко для локтей, хорошее сцепление.</div>
+            <div style="background: #ffe6e3; padding: 12px; border-radius: 20px; flex: 1; min-width: 130px;"><span style="font-weight: bold;">🧱 Бетон с покрытием</span><br>Лучше для икр (ступеньки), болгарских приседаний и брусьев. Всегда используйте коврик под ладони на отжиманиях.</div>
+        </div>
+        <hr>
+        <p><strong>🥤 Гидратация и питание:</strong> В жару пейте каждые 15–20 мин тренировки воду с щепоткой соли. После тренировки — белок (рыба, яйца, творог) и сложные углеводы. Алкоголь — умеренно и не сразу после нагрузки.</p>
+        <p><strong>🩺 Возраст и суставы:</strong> Всегда разминка (8-10 минут) и заминка (растяжка грудных, спины, квадрицепса). При болях в локтях или коленях уменьшите амплитуду, исключите прыжковые движения.</p>
+    </div>
+
+    <!-- ДНЕВНИК ПРОГРЕССА (пример) -->
+    <div style="background: #1e2f36; color: white; border-radius: 32px; padding: 20px; margin-top: 12px;">
+        <h3 style="font-size: 1.2rem; margin-bottom: 6px;">📓 Пример записи прогресса</h3>
+        <div style="background: #2c404a; border-radius: 24px; padding: 12px; font-family: monospace; font-size: 0.75rem;">
+            📅 15.07 — День 1 (жимовой) <br>
+            ✔ Отжим ноги вверх: 3×12 (чисто, +1 в след раз)<br>
+            ✔ Узкие ромбиком: 3×10 (тяжело последний подход)<br>
+            ✔ Брусья: 3×6 ( + негатив после каждого подхода)<br>
+            ✔ Планка касание: 3×10 (стабильно)<br>
+            🎯 Задача на 17.07: отжимания 3×13, брусья 3×7.<br>
+            💪 Вес рюкзака пока 0, но через неделю добавлю 2 кг в отжимания.
+        </div>
+        <div class="small-note" style="color: #bdd4dd;">Ведите такой дневник — это гарантирует прогресс даже на отдыхе.</div>
+    </div>
+
+    <div class="footer-note">
+        ⚡ Программа адаптирована под рост 190 см, вес 80 кг, возраст 40 лет.<br>
+        Цель — вернуться в зал сильнее, чем до отпуска. Отдыхайте активно! 🌊💪
+    </div>
+</div>
+</body>
+</html>
